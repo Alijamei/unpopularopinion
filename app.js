@@ -70,7 +70,7 @@ passport.use(new GoogleStrategy({
     clientID:  process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: "https://unpopularopinion.herokuapp.com/auth/google/unpopularopinion",
-    userProfileURL: "http://www.googleapis.com/oauth2/v3/userinfo",
+    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
   },
   function(accessToken, refreshToken, profile, cb) {
    
