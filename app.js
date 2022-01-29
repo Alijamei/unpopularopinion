@@ -1,6 +1,8 @@
 require('dotenv').config({ silent: process.env.NODE_ENV === 'production' })
 const express = require('express')
 var bodyParser = require('body-parser')
+var favicon = require('serve-favicon');
+var path = require('path')
 const mongoose = require('mongoose');
 const session = require('express-session')
 const MongoDbStore = require('connect-mongo');
@@ -13,7 +15,11 @@ const app = express()
 
 app.set('view engine','ejs');
 
+
+
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
 
 app.disable('etag');
 
@@ -31,7 +37,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-mongoose.connect( process.env.MONGOLAB_URI)
+mongoose.connect(process.env.MONGOLAB_URI)
     .then(() => {
         console.log('Connected to Mongo!');
     })
@@ -69,7 +75,7 @@ passport.deserializeUser(function(id, done) {
 passport.use(new GoogleStrategy({
     clientID:  process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "https://localhost:3000/auth/google/secrets",
+    callbackURL: "https://unpopularopinion.herokuapp.com/auth/google/unpopularopinion",
     userProfileURL: "http://www.googleapis.com/oauth2/v3/userinfo",
   },
   function(accessToken, refreshToken, profile, cb) {
@@ -189,6 +195,9 @@ app.post('/login',function(req,res){
 
  });     
 });
+
+
+app.use(favicon(path.join(__dirname, 'public', 'logo1.ico')))
 
 const port = process.env.PORT || 3000;
 
