@@ -1,9 +1,9 @@
 <html>
    <body> 
       <h2 align="center">UNPOPULAR OPINION</h2>
-      <div style="text-align: center">
+     
          <a href="https://unpopularopinion.herokuapp.com/" align="center">Visit unpopular opinion</a>
-       </div>
+     
      
       <hr>
       <p align="center">
